@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>905 Studios</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Theme Colors */
+    :root { --color-primary:#ffcc00; --color-secondary:#009dde; --color-accent:#feb47b; --color-dark:#0f0f0f; --color-light:#f8f8f8; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:'Inter',sans-serif; background:var(--color-dark); color:#fff; scroll-behavior:smooth; overflow-x:hidden; }
+    header { position:fixed; top:0; width:100%; display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; background:rgba(0,0,0,0.85); border-bottom:2px solid var(--color-primary); z-index:1000; }
+    .logo { height:50px; }
+    nav a { margin:0 1rem; color:#fff; text-decoration:none; font-weight:600; transition:color .3s; }
+    nav a:hover { color:var(--color-primary); }
+    main { padding-top:80px; }
+
+    .hero { height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; background:linear-gradient(135deg,var(--color-dark),var(--color-secondary)); position:relative; overflow:hidden; padding:0 2rem; }
+    .hero h1 { z-index:1; font-size:3rem; max-width:800px; line-height:1.2; color:var(--color-light); animation:fadeInUp 1s forwards,glitchShadow 2s infinite,jitter 3s infinite; }
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes glitchShadow{0%{text-shadow:2px 0 var(--color-primary),-2px 0 var(--color-secondary);}20%{text-shadow:-2px -2px var(--color-accent),2px 2px var(--color-primary);}40%{text-shadow:2px -2px var(--color-secondary),-2px 2px var(--color-accent);}60%{text-shadow:-2px 0 var(--color-primary),2px 0 var(--color-secondary);}80%{text-shadow:2px 2px var(--color-accent),-2px -2px var(--color-primary);}100%{text-shadow:2px 0 var(--color-secondary),-2px 0 var(--color-accent);}}
+    @keyframes jitter{0%,100%{transform:translate(0);}25%{transform:translate(-2px,2px);}50%{transform:translate(2px,-2px);}75%{transform:translate(-2px,-2px);}}
+
+    .section{padding:6rem 2rem;max-width:1200px;margin:auto;opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease;}
+    .section.visible{opacity:1;transform:translateY(0);}    
+    .section h2{font-size:2rem;margin-bottom:1rem;color:var(--color-primary);}
+
+    .scroll-arrow{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);font-size:2.5rem;color:var(--color-primary);opacity:0;animation:fadeInArrow 1s forwards 1.2s,arrowBounce 2s infinite 2.2s;z-index:2;}
+    @keyframes fadeInArrow{to{opacity:1;}}@keyframes arrowBounce{0%,100%{transform:translate(-50%,0);}50%{transform:translate(-50%,10px);}}
+
+    .filter-bar{text-align:center;margin-bottom:2rem;}    .filter-bar button{background:#222;color:#fff;border:none;padding:.5rem 1rem;margin:0 .3rem;border-radius:5px;cursor:pointer;transition:background .3s;}    .filter-bar button:hover{background:#444;}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;}    .gallery-item{position:relative;overflow:hidden;border-radius:10px;transition:transform .3s;}    .gallery-item img{width:100%;display:block;transition:transform .5s;}    .gallery-item span{position:absolute;bottom:10px;left:10px;background:rgba(0,0,0,.6);color:#fff;padding:.4rem .8rem;border-radius:5px;}    .gallery-item:hover{transform:scale(1.03);}    .gallery-item:hover img{transform:scale(1.05);}    .gallery-item.hide{display:none;}
+
+    .about-container{display:flex;flex-wrap:wrap;gap:2rem;align-items:center;margin-top:1rem;}    .about-image{flex:1 1 300px;}    .about-image img{width:100%;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.5);}    .about-content{flex:1 1 300px;font-size:1rem;line-height:1.6;}    .values{list-style:none;padding:0;display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;}    .values li{background:var(--color-primary);padding:.5rem 1rem;border-radius:5px;font-weight:600;}
+
+    .contact-info p{margin:.3rem 0;}    .contact-form{display:flex;flex-direction:column;gap:1rem;max-width:600px;margin:1.5rem auto;}    .contact-form input,.contact-form textarea{background:#111;border:1px solid#333;padding:.8rem;border-radius:5px;color:#fff;font-size:1rem;resize:vertical;}    .contact-form button{background:linear-gradient(135deg,var(--color-primary),var(--color-accent));border:none;padding:.8rem;color:#000;font-weight:600;border-radius:5px;cursor:pointer;transition:transform .2s;}    .contact-form button:hover{transform:translateY(-2px);}    .lightwidget-widget{width:100%;height:300px;border:0;}
+
+    footer{text-align:center;padding:2rem;background:var(--color-dark);border-top:2px solid var(--color-primary);}
+  </style>
+</head>
+<body>
+  <header>
+    <img src="./905-logo.png" alt="905 Studios Logo" class="logo">
+    <nav><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+  </header>
+  <main>
+    <section class="hero" id="hero">
+      <h1>Creative video & photo production built for brands, artists, and visionaries.</h1>
+      <div class="scroll-arrow">↓</div>
+    </section>
+    <section id="work" class="section">
+      <h2>Our Work</h2>
+      <div class="filter-bar"><button data-filter="all">All</button><button data-filter="wedding">Weddings</button><button data-filter="branding">Branding</button></div>
+      <div class="gallery">
+        <a href="#" class="gallery-item wedding"><img src="https://via.placeholder.com/400x250?text=Project+1" alt="Project 1"><span>Weddings</span></a>
+        <a href="#" class="gallery-item branding"><img src="https://via.placeholder.com/400x250?text=Project+2" alt="Project 2"><span>Branding</span></a>
+        <a href="#" class="gallery-item wedding"><img src="https://via.placeholder.com/400x250?text=Project+3" alt="Project 3"><span>Weddings</span></a>
+      </div>
+    </section>
+    <section id="about" class="section">
+      <h2>About 905 Studios</h2>
+      <div class="about-container"><div class="about-image"><img src="https://via.placeholder.com/500x400?text=905+Studios+Team" alt="905 Studios Team"></div><div class="about-content"><p>905 Studios is a premier videography and photography studio dedicated to crafting compelling visual stories. Founded by Muhammad Ibad Awan, we blend creative passion with technical expertise to serve brands, artists, and visionaries across weddings, commercial, and real estate projects.</p><ul class="values"><li>Creativity</li><li>Quality</li><li>Integrity</li><li>Collaboration</li></ul></div></div>
+    </section>
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <div class="contact-info"><p><strong>Name:</strong> Muhammad Ibad Awan</p><p><strong>Email:</strong><a href="mailto:905Studios905@gmail.com">905Studios905@gmail.com</a></p><p><strong>Phone:</strong>647-766-5677</p></div>
+      <form action="https://formspree.io/f/yourFormID" method="POST" class="contact-form"><input type="text" name="name" placeholder="Your Name" required><input type="email" name="email" placeholder="Your Email" required><textarea name="message" rows="5" placeholder="Your Message" required></textarea><button type="submit">Send Message</button></form>
+      <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/1172d5f3d5ed5f8c8ff094c45463573a.html" class="lightwidget-widget" scrolling="no" allowtransparency="true"></iframe>
+    </section>
+  </main>
+  <footer>&copy; 2025 905 Studios. All rights reserved.</footer>
+  <script>
+    // Section reveal
+    document.querySelectorAll('.section').forEach(sec => new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting && sec.classList.add('visible')), {threshold:0.1}).observe(sec));
+    // Filter
+    document.querySelectorAll('.filter-bar button').forEach(btn => btn.addEventListener('click', () => { const f=btn.dataset.filter; document.querySelectorAll('.gallery-item').forEach(item=>item.classList.toggle('hide',f!=='all'&&!item.classList.contains(f))); }));
+  </script>
+</body>
+</html>
